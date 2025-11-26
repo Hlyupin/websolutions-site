@@ -1,1 +1,122 @@
+/* Добавьте эти стили в конец файла */
 
+/* Секция "О нас" */
+.about {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.about h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat h3 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #e74c3c;
+}
+
+.stat p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Плейсхолдер для карты */
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #6c757d;
+    font-size: 1.2rem;
+}
+
+.map-placeholder p {
+    margin: 0.5rem 0;
+}
+
+/* Социальные ссылки в футере */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #3498db;
+}
+
+/* Списки в карточках услуг */
+.service-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.service-card li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.service-card li:last-child {
+    border-bottom: none;
+}
+
+.service-card li:before {
+    content: "✓ ";
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Адаптивность для статистики */
+@media (max-width: 768px) {
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat h3 {
+        font-size: 2.5rem;
+    }
+    
+    .about h2 {
+        font-size: 2rem;
+    }
+}
