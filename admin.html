@@ -5,102 +5,351 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Панель администратора - WebSolutions</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .admin-container {
-            max-width: 500px;
-            margin: 100px auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        
+
+        .admin-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .admin-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-header h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .admin-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
         .admin-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
-        
+
         .form-group {
             display: flex;
             flex-direction: column;
         }
-        
+
         .form-group label {
             margin-bottom: 0.5rem;
-            font-weight: bold;
+            font-weight: 600;
             color: #2c3e50;
-        }
-        
-        .form-group input {
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
             font-size: 1rem;
         }
-        
+
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
         .form-group input:focus {
             border-color: #3498db;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
-        
+
         .admin-btn {
-            background: #3498db;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
             border: none;
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.2rem;
+            border-radius: 8px;
             font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
-        
+
         .admin-btn:hover {
-            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
         }
-        
+
+        .admin-btn:active {
+            transform: translateY(0);
+        }
+
         .admin-links {
             margin-top: 2rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-        
+
         .admin-links a {
             color: #3498db;
             text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .admin-links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .back-to-home a {
+            color: #7f8c8d;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .back-to-home a:hover {
+            color: #3498db;
+        }
+
+        .admin-features {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .admin-features h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .admin-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .admin-features li {
+            padding: 0.3rem 0;
+            color: #5a6c7d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-features li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Адаптивность для админ-панели */
+        @media (max-width: 768px) {
+            .admin-container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+
+            .admin-main {
+                margin-top: 60px;
+                padding: 1rem;
+            }
+
+            .admin-header h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-container {
+                padding: 1.5rem;
+            }
+
+            .admin-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-group input {
+                padding: 0.8rem;
+            }
+
+            .admin-btn {
+                padding: 1rem;
+            }
+        }
+
+        /* Стили для навигации в админ-панели */
+        .admin-nav .nav-logo a {
+            color: white;
+        }
+
+        .admin-nav .nav-link {
+            color: white;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Панель навигации -->
+    <nav class="navbar admin-nav">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html">WebSolutions</a>
             </div>
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">← На главную</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> На главную</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
     </nav>
 
-    <div class="admin-container">
-        <h2>Панель администратора</h2>
-        <form class="admin-form" action="/admin/login" method="POST">
-            <div class="form-group">
-                <label for="login">Логин:</label>
-                <input type="text" id="login" name="login" required>
+    <!-- Основной контент админ-панели -->
+    <main class="admin-main">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1><i class="fas fa-lock"></i> Панель администратора</h1>
+                <p>Войдите для управления сайтом</p>
             </div>
-            
-            <div class="form-group">
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
+
+            <form class="admin-form" id="adminLoginForm">
+                <div class="form-group">
+                    <label for="login"><i class="fas fa-user"></i> Логин:</label>
+                    <input type="text" id="login" name="login" required placeholder="Введите ваш логин">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> Пароль:</label>
+                    <input type="password" id="password" name="password" required placeholder="Введите ваш пароль">
+                </div>
+                
+                <button type="submit" class="admin-btn">
+                    <i class="fas fa-sign-in-alt"></i> Войти в систему
+                </button>
+            </form>
+
+            <div class="admin-features">
+                <h3>Возможности панели администратора:</h3>
+                <ul>
+                    <li>Управление контентом сайта</li>
+                    <li>Редактирование страниц</li>
+                    <li>Управление пользователями</li>
+                    <li>Просмотр статистики</li>
+                    <li>Настройка SEO</li>
+                </ul>
             </div>
-            
-            <button type="submit" class="admin-btn">Войти</button>
-        </form>
-        
-        <div class="admin-links">
-            <a href="#">Забыли пароль?</a>
+
+            <div class="admin-links">
+                <a href="#"><i class="fas fa-question-circle"></i> Помощь по входу</a>
+                <a href="#"><i class="fas fa-redo"></i> Сбросить пароль</a>
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html">
+                    <i class="fas fa-home"></i> Вернуться на главную страницу
+                </a>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 WebSolutions. Все права защищены.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы входа
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            
+            // Демо-авторизация
+            if (login && password) {
+                // Показываем сообщение об успешном входе
+                const submitBtn = this.querySelector('.admin-btn');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Вход в систему...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('✅ Демо-вход выполнен успешно!\n\nЛогин: ' + login + '\nПароль: ' + password + '\n\nВ реальном проекте здесь будет перенаправление в админ-панель.');
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Очищаем форму
+                    this.reset();
+                    
+                    // В реальном проекте здесь было бы:
+                    // window.location.href = 'admin-dashboard.html';
+                    
+                }, 1500);
+            }
+        });
+
+        // Навигация для мобильных устройств
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Закрываем меню при клике на ссылку (для мобильных)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
