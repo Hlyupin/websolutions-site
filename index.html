@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSolutions – Разработка и продвижение сайтов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Панель навигации -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#">WebSolutions</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-link active">Главная</a>
+                <a href="#services" class="nav-link">Услуги</a>
+                <a href="#about" class="nav-link">О нас</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+                <a href="admin.html" class="nav-link admin-link">Админ</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Профессиональная разработка сайтов</h1>
+            <p>Создаем современные адаптивные сайты для вашего бизнеса</p>
+            <button class="cta-button" onclick="scrollToServices()">Начать проект</button>
+        </div>
+    </section>
+
+    <!-- Слайдер -->
+    <section class="slider-section">
+        <h2>Наши работы</h2>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <h3>Корпоративные сайты</h3>
+                        <p>Современные решения для бизнеса</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h3>Интернет-магазины</h3>
+                        <p>Эффективные платформы для e-commerce</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h3>Лендинги</h3>
+                        <p>Высококонвертируемые посадочные страницы</p>
+                    </div>
+                </div>
+            </div>
+            <button class="slider-btn prev-btn">‹</button>
+            <button class="slider-btn next-btn">›</button>
+            <div class="slider-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2>О компании WebSolutions</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Мы - команда профессиональных разработчиков с более чем 5-летним опытом создания веб-решений для бизнеса.</p>
+                    <p>Специализируемся на создании современных, адаптивных и высокопроизводительных сайтов.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Завершенных проектов</p>
+                        </div>
+                        <div class="stat">
+                            <h3>3+</h3>
+                            <p>Года на рынке</p>
+                        </div>
+                        <div class="stat">
+                            <h3>98%</h3>
+                            <p>Довольных клиентов</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <h2>Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-code"></i>
+                <h3>Разработка сайтов</h3>
+                <p>Создаем современные адаптивные сайты любой сложности</p>
+                <ul>
+                    <li>Корпоративные сайты</li>
+                    <li>Интернет-магазины</li>
+                    <li>Лендинг-страницы</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-search"></i>
+                <h3>SEO-оптимизация</h3>
+                <p>Продвижение в поисковых системах Яндекс и Google</p>
+                <ul>
+                    <li>Аудит сайта</li>
+                    <li>Ключевые слова</li>
+                    <li>Техническое SEO</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Техническая поддержка</h3>
+                <p>Постоянное обслуживание и обновление вашего сайта</p>
+                <ul>
+                    <li>Обновления контента</li>
+                    <li>Технический аудит</li>
+                    <li>Резервное копирование</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты и карта -->
+    <section id="contacts" class="contacts">
+        <h2>Контакты</h2>
+        <div class="contacts-container">
+            <div class="contact-info">
+                <h3>Свяжитесь с нами</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>г. Москва, ул. Примерная, д. 123</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (495) 123-45-67</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@websolutions.ru</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Пн-Пт: 9:00-18:00</span>
+                </div>
+            </div>
+            <div class="map-container">
+                <div id="map">
+                    <div class="map-placeholder">
+                        <p>🚀 Карта загружается...</p>
+                        <p><small>Для реального проекта подключите Яндекс.Карты</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 WebSolutions. Все права защищены.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
