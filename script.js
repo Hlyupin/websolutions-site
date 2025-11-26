@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Плавная прокрутка
     initSmoothScroll();
+    
+    // Инициализация карты
+    initYandexMap();
 });
 
 // Слайдер
@@ -129,6 +132,82 @@ function initSmoothScroll() {
     }
 }
 
+// Яндекс Карты
+function initYandexMap() {
+    // Проверяем, загружена ли библиотека карт
+    if (typeof ymaps === 'undefined') {
+        console.log('Yandex Maps API не загружена');
+        showMapPlaceholder();
+        return;
+    }
+
+    ymaps.ready(function() {
+        try {
+            // Создаем карту
+            var myMap = new ymaps.Map('map', {
+                center: [55.758468, 37.601088], // Москва, Тверская ул.
+                zoom: 15,
+                controls: ['zoomControl', 'fullscreenControl']
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
+
+            // Создаем метку
+            var myPlacemark = new ymaps.Placemark([55.758468, 37.601088], {
+                hintContent: 'WebSolutions',
+                balloonContent: `
+                    <div style="padding: 10px;">
+                        <h3 style="margin: 0 0 10px 0; color: #2c3e50;">WebSolutions</h3>
+                        <p style="margin: 0; color: #555;">
+                            <strong>Адрес:</strong> г. Москва, ул. Тверская, д. 7<br>
+                            <strong>Телефон:</strong> +7 (495) 123-45-67<br>
+                            <strong>Email:</strong> info@websolutions.ru
+                        </p>
+                    </div>
+                `
+            }, {
+                // Опции метки
+                iconLayout: 'default#image',
+                iconImageHref: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAzMCA0MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1IDBDNi43MTUgMCAwIDYuNzE1IDAgMTVjMCAxMC41IDExLjI1IDI0LjM3NSAxMy4xMjUgMjYuNzVDMTMuNzUgNDEuNzUgMTQuMjUgNDIgMTUgNDJjMC43NSAwIDEuMjUtMC4yNSAxLjg3NS0wLjI1QzE4Ljc1IDM5LjM3NSAzMCAyNS41IDMwIDE1YzAtOC4yODUtNi43MTUtMTUtMTUtMTVaIiBmaWxsPSIjZTM0YzNjIi8+CjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjYiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=',
+                iconImageSize: [30, 42],
+                iconImageOffset: [-15, -42]
+            });
+
+            // Добавляем метку на карту
+            myMap.geoObjects.add(myPlacemark);
+
+            // Открываем балун при клике на метку
+            myPlacemark.events.add('click', function() {
+                myPlacemark.balloon.open();
+            });
+
+            // Адаптивность для мобильных устройств
+            if (window.innerWidth <= 768) {
+                myMap.behaviors.disable('scrollZoom');
+            }
+
+        } catch (error) {
+            console.error('Ошибка при создании карты:', error);
+            showMapPlaceholder();
+        }
+    });
+}
+
+// Заглушка если карта не загрузилась
+function showMapPlaceholder() {
+    const mapContainer = document.getElementById('map');
+    if (mapContainer) {
+        mapContainer.innerHTML = `
+            <div class="map-placeholder">
+                <i class="fas fa-map-marker-alt"></i>
+                <p><strong>WebSolutions</strong></p>
+                <p>г. Москва, ул. Тверская, д. 7</p>
+                <p><small>Для просмотра карты необходим API-ключ Яндекс.Карт</small></p>
+            </div>
+        `;
+    }
+}
+
 // Обработка формы администратора
 if (document.querySelector('.admin-form')) {
     document.querySelector('.admin-form').addEventListener('submit', function(e) {
@@ -154,3 +233,12 @@ if (document.querySelector('.admin-form')) {
         }
     });
 }
+
+// Обработчик изменения размера окна для адаптивности карты
+window.addEventListener('resize', function() {
+    if (typeof ymaps !== 'undefined' && window.myMap) {
+        setTimeout(() => {
+            window.myMap.container.fitToViewport();
+        }, 300);
+    }
+});
